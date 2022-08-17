@@ -1,0 +1,160 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="wrapper bg-dark d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-outline-light">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+
+            <div class="bg-secondary p-4 pt-5">
+                <h1><a asp-action="Index" asp-controller="Home" class="logo">Ropey DVD</a></h1>
+                <ul class="list-unstyled components mb-5">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+        <li class="active">
+            <a href="#dataSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Entry Data</a>
+            <ul class="collapse list-unstyled " id="dataSubmenu">
+                <li>
+                    <a asp-action="Index" asp-controller="DvdCategories">DVD Category</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Studios">Studio Details</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Producers">Producer Detaiils</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="DvdTitles">DVD Title Details</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="DvdCopies">DVD Copy Details</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Actors">Actor Details</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Castmembers">Cast Member Details</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="MembershipCategories">Membership Category</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Members">Member Details</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="LoanTypes">Loan Type</a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Loans">Member Loan Details</a>
+                </li>
+            </ul>
+        </li>}
+                    <li>
+                        <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Report Details</a>
+                        <ul class="collapse list-unstyled" id="reportSubmenu">
+                            <li>
+                                <a asp-action="Report1" asp-controller="Reports">DVD Title</a>
+                            </li>
+                            <li>
+                                <a asp-action="Report2" asp-controller="Reports">DVD Stock Count</a>
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                <li>
+                    <a asp-action="Report3" asp-controller="Reports">Member Loan</a>
+                </li>
+                                <li>
+                                    <a asp-action="Report4" asp-controller="Reports">DVD Details</a>
+                                </li>
+                                                <li>
+                                                    <a asp-action="Report5" asp-controller="Reports">DVD Copy</a>
+                                                </li>
+                                                                <li>
+                                                                    <a asp-action="Report6" asp-controller="Reports">Generate Member Loan Report</a>
+                                                                </li>
+                                                                                <li>
+                                                                                    <a asp-action="Report7" asp-controller="Reports">Return Member Loans</a>
+                                                                                </li>
+                                                                                                <li>
+                                                                                                    <a asp-action="Report8" asp-controller="Reports">Members List</a>
+                                                                                                </li>
+                                                                                                                <li>
+                                                                                                                    <a asp-action="Report9" asp-controller="Reports">Create DVD Title</a>
+                                                                                                                </li>
+                                                                                                                                <li>
+                                                                                                                                    <a asp-action="Report10" asp-controller="Reports">DVD Details</a>
+                                                                                                                                </li>
+                                                                                                                                                <li>
+                                                                                                                                                    <a asp-action="Report11" asp-controller="Reports">Loan Details</a>
+                                                                                                                                                </li>
+                                                                                                                                                                <li>
+                                                                                                                                                                    <a asp-action="Report12" asp-controller="Reports">Member Loan Details</a>
+                                                                                                                                                                </li>
+                                                                                                                                                                                <li>
+                                                                                                                                                                                    <a asp-action="Report13" asp-controller="Reports">Not Loaned DVD</a>
+                                                                                                                                                                                </li>
+                                                                                                                                                                                                <li>
+                                                                                                                                                                                                    <a asp-action="Index" asp-controller="RopayUsers">Create Users</a>
+                                                                                                                                                                                                </li>}
+                        </ul>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+        <li>
+            <a asp-action="Logout" asp-controller="Home">Logout&nbsp;@User.Identity.Name </a>
+        </li>
+ }
+                    else
+                    {
+        <li>
+            <a asp-action="Login" asp-controller="Home">Login</a>
+        </li>}
+                </ul>
+           
+
+
+            </div>
+        </nav>
+
+
+        <!-- Page Content  -->
+        <div class="container p-4 p-md-5 pt-5">
+            @RenderBody()
+        </div>
+    </div>
+ 
+    <footer class=" bg-dark text-white pt-4">
+        <div class="container  text-center ">  
+            
+                <div class=" container   mt-3">
+                    <h5 class=" text-uppercase text-white h3">Rent From Anywhere. Use of this service and this website constitutes acceptance of our Privacy Policy</h5>
+                    <p class="h6 text-uppercase text-white"> This application was developed by our group for our courswork</p>
+                </div>
+          
+           
+        </div>
+       
+        
+
+    </footer>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/main.js"></script>
+</body>
+</html>

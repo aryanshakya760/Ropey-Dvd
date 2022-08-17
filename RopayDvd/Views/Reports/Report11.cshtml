@@ -1,0 +1,63 @@
+﻿@model IEnumerable<RopayDvd.Models.Loan>
+
+@{
+    ViewData["Title"] = "DVD Loan Details";
+    var datewiseReport = Model.Select(l=>l.DateOut).Distinct();
+}
+
+<h4 class="text-center h3 text-white mb-4">@ViewBag.Title</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="h6 text-white ">Loan Date</th>
+            <th class="h6 text-white ">
+                Dvd Title
+            </th>
+            <th class="h6 text-white ">
+                Copy Number
+            </th>
+            <th class="h6 text-white ">
+                Borrower Name
+            </th>
+            <th class="h6 text-white ">   
+                No. of Loans
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in datewiseReport) {
+        <tr>
+            <td>
+                @item.ToShortDateString()
+            </td>
+            <td class="text-white">
+                <ul>
+                    @foreach (Loan loan in Model.Where(l => l.DateOut == item).OrderBy(l=>l.CopyNumberNavigation.DvdNumberNavigation.DvdTite))
+                    {
+                        <li>@loan.CopyNumberNavigation.DvdNumberNavigation.DvdTite</li>
+                    }
+                </ul>
+            </td>
+            <td class="text-white">
+                <ul>
+                    @foreach (Loan loan in Model.Where(l => l.DateOut == item).OrderBy(l => l.CopyNumberNavigation.DvdNumberNavigation.DvdTite))
+                    {
+                        <li>@loan.CopyNumber</li>
+                    }
+                </ul>
+            </td>
+            <td class="text-white">
+                <ul>
+                    @foreach (Loan loan in Model.Where(l => l.DateOut == item).OrderBy(l => l.CopyNumberNavigation.DvdNumberNavigation.DvdTite))
+                    {
+                        <li>@(loan.MemberNumberNavigation.MemberFirstName+" "+loan.MemberNumberNavigation.MemberLastName)</li>
+                    }
+                </ul>                
+            </td>            
+            <td class="text-white">                
+                @Model.Where(l=>l.DateOut==item).ToList().Count  
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

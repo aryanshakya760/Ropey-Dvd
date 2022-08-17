@@ -1,0 +1,35 @@
+﻿@model IEnumerable<RopayDvd.Models.Producer>
+
+@{
+    ViewData["Title"] = "Producer List";
+}
+
+<h4 class="text-white h3">@ViewBag.Title</h4>
+
+<p class="h5">
+    <a  asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-white h6" >
+                @Html.DisplayNameFor(model => model.ProducerName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-white">
+                    @Html.DisplayFor(modelItem => item.ProducerName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProducerNumber">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProducerNumber">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

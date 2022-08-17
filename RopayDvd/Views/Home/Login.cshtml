@@ -1,0 +1,36 @@
+﻿@model Login
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Welcome to Ropey DVD Center!";
+}
+<h4 class="text-white text-center">@ViewBag.Title</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="text-white">Login</h1>
+        <br/>
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LoginId" class="control-label text-white h3">Enter Login ID</label>
+                <input asp-for="LoginId" class="form-control" />
+                <span asp-validation-for="LoginId" class="text-danger "></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoginCode" class="control-label text-white h3">Enter Password</label>
+                <input asp-for="LoginCode" class="form-control" />
+                <span asp-validation-for="LoginCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="text-center mt-5 mb-5">
+                    <input type="submit" value="Login" class="btn btn-outline-light" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-white h4 btn btn-outline-primary">Go Back</a>
+</div>
+

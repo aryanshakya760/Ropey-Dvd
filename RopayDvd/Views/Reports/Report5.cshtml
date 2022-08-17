@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RopayDvd.Models.Loan>
+
+@{
+    ViewData["Title"] = "DVD Copy";
+}
+
+<h4 class="text-center h3 text-white mb-4">@ViewBag.Title</h4>
+<div class="row ">
+    <div class="col-sm-4 h5 text-white ">DVD Copy Number:</div>
+    <div class="col-sm-6 ">
+        <form asp-action="Report5">
+            <select name="SelectedCopyId" asp-items="@ViewBag.CopyList" class="form-control" onchange="this.form.submit();">
+                <option value="0">Select Copy Number</option>
+            </select>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="h6 text-white ">
+                Borrower Name
+            </th>
+            <th class="h6 text-white ">DVD Title</th>
+            <th class="h6 text-white ">Copy Number</th>
+            <th class="h6 text-white ">Loan Date</th>
+            <th class="h6 text-white ">Due Date</th>
+            <th class="h6 text-white "> Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-white">
+                @item.MemberNumberNavigation.MemberFirstName &nbsp; @item.MemberNumberNavigation.MemberLastName
+            </td>
+            <td class="text-white">
+                @item.CopyNumberNavigation.DvdNumberNavigation.DvdTite
+            </td>
+            <td class="text-white">
+                @item.CopyNumber 
+            </td>
+            <td class="text-white">@item.DateOut.ToShortDateString() </td>
+            <td class="text-white">@item.DateDue.ToShortDateString()</td>
+            <td class="text-white">
+                @if(item.DateReturned!=null)
+                {
+                    <span>@Convert.ToDateTime(item.DateReturned).ToShortDateString()</span>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

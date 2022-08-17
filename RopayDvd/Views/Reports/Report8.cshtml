@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RopayDvd.Models.Member>
+
+@{
+    ViewData["Title"] = "List of Members";
+}
+
+<h4 class="text-center h3 text-white mb-4">@ViewBag.Title</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="h6 text-white">
+                Member Name
+            </th>
+            <th class="h6 text-white">
+                Member Category
+            </th>
+            <th class="h6 text-white">
+                Loan Count
+            </th>            
+            <th class="h6 text-white">Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-white">
+                    @item.MemberFirstName &nbsp;@item.MemberLastName
+                </td>
+                <td class="text-white">
+                    @item.MembershipCategoryNumberNavigation.MembershipCategoryDescription
+                </td>
+                <td class="text-white">
+                    @item.Loans.Count
+                </td>
+                <td class="text-white">
+                    @if (item.Loans.Count > item.MembershipCategoryNumberNavigation.MembershipCategoryTotalLoans)
+                    { 
+                        <span class="text-danger">Too many DVDs</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
